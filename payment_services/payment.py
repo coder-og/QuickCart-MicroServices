@@ -13,6 +13,12 @@ def calculate_payment_total(amount, currency="USD"):
     if not amount.is_finite() or amount <= 0:
         raise ValueError("Payment amount must be positive")
 
+    # Normalize currency before validation
+    if not isinstance(currency, str):
+        raise ValueError("Only USD is supported")
+
+    currency = currency.upper()
+
     if currency != "USD":
         raise ValueError("Only USD is supported")
 
